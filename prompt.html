@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompting Techniques Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1rem; /* More rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1f2937; /* Darker gray for headings */
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #4f46e5; /* Indigo for main title */
+        }
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid #e5e7eb; /* Light gray border */
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            color: #3b82f6; /* Blue for section titles */
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            color: #10b981; /* Green for technique titles */
+        }
+        p {
+            margin-bottom: 1rem;
+        }
+        pre {
+            background-color: #f9fafb; /* Lighter background for code */
+            padding: 1rem;
+            border-radius: 0.75rem; /* Rounded corners for code blocks */
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            border: 1px solid #e5e7eb;
+            white-space: pre-wrap; /* Ensures text wraps */
+            word-wrap: break-word; /* Breaks long words */
+        }
+        .copy-button {
+            background-color: #4f46e5; /* Indigo button */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            margin-top: 0.75rem;
+            font-weight: 500;
+            display: inline-block; /* Allows margin-top to work */
+        }
+        .copy-button:hover {
+            background-color: #6366f1; /* Lighter indigo on hover */
+            transform: translateY(-1px); /* Slight lift on hover */
+        }
+        .copy-button:active {
+            background-color: #4338ca; /* Darker indigo on click */
+            transform: translateY(0);
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="text-indigo-700">AI Prompting Techniques: A Business Guide 🚀</h1>
+        <p class="text-center text-gray-600 mb-8">Understanding and applying effective prompting techniques is crucial for maximizing the value of AI models in your business operations. This guide breaks down key strategies to help you craft prompts that yield precise, useful, and consistent results.</p>
+
+        <hr>
+
+        <h2 class="text-blue-600">Core Prompting Strategies</h2>
+
+        <!-- Zero-shot, One-shot, and Few-shot Prompting -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h3 class="text-emerald-600">Zero-shot, One-shot, and Few-shot Prompting</h3>
+            <p class="text-gray-700">These techniques dictate how much example-based guidance you provide to the AI.</p>
+            <p class="text-gray-700"><strong>Explanation:</strong></p>
+            <ul class="list-disc list-inside ml-4 text-gray-700">
+                <li><strong>Zero-shot prompting</strong> involves giving the AI a task without any examples. It relies solely on the model's pre-trained knowledge.</li>
+                <li><strong>One-shot prompting</strong> provides a single example of the desired input-output pair to guide the AI.</li>
+                <li><strong>Few-shot prompting</strong> extends this by offering two or more examples, which is particularly effective for complex tasks or when a specific output format is required.</li>
+            </ul>
+            <p class="text-gray-700 mt-4"><strong>Practical Business Scenario:</strong> Automating email responses for customer service inquiries.</p>
+            <p class="text-gray-700 mt-4"><strong>Prompt Example:</strong></p>
+            <pre id="prompt1">
+**Zero-shot:**
+Draft a polite email response to a customer inquiring about the status of their order, stating that it's been shipped and providing a tracking link.
+
+**One-shot:**
+Draft a polite email response to customer inquiries.
+Example:
+Input: "Where is my order?"
+Output: "Dear [Customer Name], Your order [Order Number] has been shipped! You can track it here: [Tracking Link]. Thank you for your patience."
+
+**Few-shot:**
+Draft polite email responses to customer inquiries, following the provided examples.
+Example 1:
+Input: "Where is my order?"
+Output: "Dear [Customer Name], Your order [Order Number] has been shipped! You can track it here: [Tracking Link]. Thank you for your patience."
+
+Example 2:
+Input: "I want to return an item."
+Output: "Dear [Customer Name], We're sorry to hear that. Please visit our returns portal at [Returns Portal Link] to initiate your return. Thank you."
+            </pre>
+            <button class="copy-button" onclick="copyPrompt('prompt1', this)">Copy Prompt</button>
+        </div>
+
+        <!-- System Message, Contextual, and Role Prompting -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h3 class="text-emerald-600">System Message, Contextual, and Role Prompting</h3>
+            <p class="text-gray-700">These techniques establish the AI's persona, overall purpose, and specific background information.</p>
+            <p class="text-gray-700"><strong>Explanation:</strong></p>
+            <ul class="list-disc list-inside ml-4 text-gray-700">
+                <li><strong>System Message Prompting</strong> sets the overarching context and purpose for the AI, defining its general behavior or constraints for an entire conversation or session.</li>
+                <li><strong>Contextual Prompting</strong> provides specific details, background information, or relevant data within the prompt itself, enabling the AI to generate more accurate and relevant responses.</li>
+                <li><strong>Role Prompting</strong> assigns a specific character or identity to the AI, influencing its tone, style, and the type of information it provides.</li>
+            </ul>
+            <p class="text-gray-700 mt-4"><strong>Practical Business Scenario:</strong> Generating marketing copy for a new product launch.</p>
+            <p class="text-gray-700 mt-4"><strong>Prompt Example:</strong></p>
+            <pre id="prompt2">
+**System Message (for a marketing campaign assistant):**
+You are an expert marketing copywriter specializing in direct-to-consumer product launches. Your goal is to create compelling and concise copy that drives conversions.
+
+**Contextual (within the prompt):**
+Product: "EcoGlow Smart Garden" - an indoor hydroponic system that grows herbs and vegetables year-round with minimal effort. Key features: self-watering, LED grow lights, app-controlled. Target audience: busy urban professionals interested in sustainable living.
+
+**Role (within the prompt):**
+Act as a passionate sustainability advocate and write a short social media ad for the EcoGlow Smart Garden. Highlight its ease of use and environmental benefits.
+            </pre>
+            <button class="copy-button" onclick="copyPrompt('prompt2', this)">Copy Prompt</button>
+        </div>
+
+        <hr>
+
+        <h2 class="text-blue-600">Advanced Prompting Techniques</h2>
+
+        <!-- Step-back Prompting -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h3 class="text-emerald-600">Step-back Prompting</h3>
+            <p class="text-gray-700"><strong>Explanation:</strong> This technique involves asking the AI to first consider a more general or abstract question related to the task before addressing the specific prompt. This helps the AI activate broader knowledge and derive more insightful answers.</p>
+            <p class="text-gray-700 mt-4"><strong>Practical Business Scenario:</strong> Analyzing complex market trends to inform strategic decisions.</p>
+            <p class="text-gray-700 mt-4"><strong>Prompt Example:</strong></p>
+            <pre id="prompt3">
+Original Question: "What are the key factors driving the growth of the electric vehicle market in Southeast Asia over the next five years?"
+
+Step-back Question: "What are the fundamental drivers of innovation and adoption in emerging technology markets?"
+
+Then, use the answer to the step-back question to inform the original question.
+            </pre>
+            <button class="copy-button" onclick="copyPrompt('prompt3', this)">Copy Prompt</button>
+        </div>
+
+        <!-- Chain of Thought Prompting -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h3 class="text-emerald-600">Chain of Thought Prompting</h3>
+            <p class="text-gray-700"><strong>Explanation:</strong> By instructing the AI to show its step-by-step reasoning process before providing a final answer, <strong>Chain of Thought (CoT)</strong> prompting significantly improves the accuracy and reliability of responses, especially for complex tasks involving logic, calculations, or multi-step problem-solving.</p>
+            <p class="text-gray-700 mt-4"><strong>Practical Business Scenario:</strong> Troubleshooting a technical issue based on user descriptions.</p>
+            <p class="text-gray-700 mt-4"><strong>Prompt Example:</strong></p>
+            <pre id="prompt4">
+User Issue: "My internet keeps disconnecting every hour, and my router lights are blinking red."
+
+Prompt: "Explain step-by-step how you would diagnose and suggest solutions for a user experiencing hourly internet disconnections with blinking red router lights. Think aloud before providing the final troubleshooting steps."
+            </pre>
+            <button class="copy-button" onclick="copyPrompt('prompt4', this)">Copy Prompt</button>
+        </div>
+
+        <!-- Self-consistency -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h3 class="text-emerald-600">Self-consistency</h3>
+            <p class="text-gray-700"><strong>Explanation:</strong> <strong>Self-consistency</strong> involves running the same prompt multiple times and then using a "majority vote" or consensus mechanism to select the most consistent and likely correct answer from the various outputs. This enhances accuracy but can increase processing time and cost.</p>
+            <p class="text-gray-700 mt-4"><strong>Practical Business Scenario:</strong> Generating multiple creative taglines for a new product and selecting the best one.</p>
+            <p class="text-gray-700 mt-4"><strong>Prompt Example:</strong></p>
+            <pre id="prompt5">
+Generate five distinct, catchy taglines for a new brand of organic, sustainably sourced coffee called "Terra Brew."
+            </pre>
+            <p class="text-gray-600 text-sm italic">*(Note: The self-consistency step would involve running this prompt multiple times and then manually or programmatically selecting the most consistent/best tagline from the aggregated results.)*</p>
+            <button class="copy-button" onclick="copyPrompt('prompt5', this)">Copy Prompt</button>
+        </div>
+
+        <!-- Tree of Thought -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h3 class="text-emerald-600">Tree of Thought</h3>
+            <p class="text-gray-700"><strong>Explanation:</strong> <strong>Tree of Thought (ToT)</strong> allows the AI to explore multiple reasoning paths simultaneously, resembling a decision tree. It's an advanced technique that combines elements of Chain of Thought and self-consistency, enabling the model to backtrack, explore alternatives, and refine its thinking for highly complex problems.</p>
+            <p class="text-gray-700 mt-4"><strong>Practical Business Scenario:</strong> Developing a comprehensive content strategy for a new online course, considering various learning objectives and audience segments.</p>
+            <p class="text-gray-700 mt-4"><strong>Prompt Example:</strong></p>
+            <pre id="prompt6">
+You are a content strategist. Develop a comprehensive content strategy for an online course on "Introduction to Data Analytics." Consider different learning styles, module structures, assessment methods, and potential challenges for learners. Explore at least three distinct approaches to the course flow before recommending the optimal one.
+            </pre>
+            <button class="copy-button" onclick="copyPrompt('prompt6', this)">Copy Prompt</button>
+        </div>
+
+        <!-- Reason and Act (ReAct) Prompting -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h3 class="text-emerald-600">Reason and Act (ReAct) Prompting</h3>
+            <p class="text-gray-700"><strong>Explanation:</strong> <strong>ReAct prompting</strong> combines natural language reasoning with the ability for the AI to perform actions using external tools (like search engines, code interpreters, or APIs). It mimics human problem-solving by alternating between "thought" (reasoning about the next step) and "action" (executing a tool to gather information or perform a task).</p>
+            <p class="text-gray-700 mt-4"><strong>Practical Business Scenario:</strong> Answering complex customer queries that require looking up real-time information (e.g., product availability, shipping times).</p>
+            <p class="text-gray-700 mt-4"><strong>Prompt Example:</strong></p>
+            <pre id="prompt7">
+"A customer asks: 'Is the 'XYZ' laptop currently in stock, and what's the estimated delivery time to London, UK?'
+
+Reason: I need to check the inventory system for 'XYZ' laptop availability and then calculate the estimated delivery time to London, UK.
+Act: Use the 'inventory_lookup' tool for 'XYZ' laptop.
+Act: Use the 'shipping_calculator' tool for 'London, UK'.
+            </pre>
+            <button class="copy-button" onclick="copyPrompt('prompt7', this)">Copy Prompt</button>
+        </div>
+
+        <hr>
+
+        <!-- General Best Practices -->
+        <div class="mb-8 p-6 bg-gray-50 rounded-lg shadow-sm">
+            <h2 class="text-blue-600">General Best Practices for All Prompts</h2>
+            <p class="text-gray-700">To optimize your AI interactions and ensure consistent, high-quality outputs, keep these general best practices in mind:</p>
+            <ul class="list-disc list-inside ml-4 text-gray-700">
+                <li><strong>Provide Examples (One-shot/Few-shot):</strong> Whenever possible, especially for specific formats or complex tasks, provide one or more examples of the desired input and output. This significantly improves the AI's understanding.</li>
+                <li><strong>Design with Simplicity:</strong> Start with the simplest possible prompt to achieve your goal. Only add complexity (e.g., more instructions, examples, or advanced techniques) if the initial simple prompt doesn't yield satisfactory results.</li>
+                <li><strong>Be Specific About the Output:</strong> Clearly define the desired format, length, tone, and any structural requirements for the AI's response (e.g., "Respond in JSON format," "Write a 100-word summary," "Use a formal tone").</li>
+                <li><strong>Use Instructions Over Constraints:</strong> Tell the AI what *to do* rather than what *not to do*. For example, instead of "Do not use jargon," say "Use simple, accessible language." Positive instructions are generally more effective.</li>
+                <li><strong>Control Token Length:</strong> Be mindful of the maximum token length for your AI model, especially in production environments. Specify desired output lengths to manage costs and latency.</li>
+                <li><strong>Use Variables in Prompts:</strong> For dynamic content, use placeholders or variables in your prompts (e.g., `[Product Name]`, `[Customer Query]`). This allows for programmatic insertion of different inputs, making your prompts reusable and scalable.</li>
+                <li><strong>Iterate and Refine:</strong> Prompt engineering is an iterative process. Test your prompts, analyze the outputs, and continuously refine them based on the results.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function copyPrompt(promptId, buttonElement) {
+            const promptText = document.getElementById(promptId).innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = promptText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const originalButtonText = buttonElement.innerText;
+            buttonElement.innerText = 'Copied!';
+            buttonElement.style.backgroundColor = '#10b981'; // Green for copied state
+
+            setTimeout(() => {
+                buttonElement.innerText = originalButtonText;
+                buttonElement.style.backgroundColor = '#4f46e5'; // Revert to original color
+            }, 2000); // Revert after 2 seconds
+        }
+    </script>
+</body>
+</html>
